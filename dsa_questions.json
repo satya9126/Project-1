@@ -1,0 +1,226 @@
+{
+  "Arrays": [
+    {
+      "id": "arr1",
+      "question": "Find the maximum subarray sum.",
+      "difficulty": "Easy",
+      "sample_input": "[-2,1,-3,4,-1,2,1,-5,4]",
+      "expected_output": "6",
+      "hint": "Use Kadane\u2019s algorithm to keep track of current and max sum.",
+      "optimized_code": "def max_subarray_sum(arr):\n    max_sum = curr = arr[0]\n    for n in arr[1:]:\n        curr = max(n, curr + n)\n        max_sum = max(max_sum, curr)\n    return max_sum",
+      "optimized_explanation": "1. Start with first element\n2. Track current and max sum\n3. Reset current if negative\n4. Update max\n5. Return max",
+      "optimized_tc": "O(n)",
+      "optimized_sc": "O(1)",
+      "user_tc": "O(n)",
+      "user_sc": "O(1)",
+      "function_signature": "def max_subarray_sum(arr):"
+    },
+    {
+      "id": "arr2",
+      "question": "Find the missing number in an array of 0 to n.",
+      "difficulty": "Easy",
+      "sample_input": "[3, 0, 1]",
+      "expected_output": "2",
+      "hint": "Use sum from 0 to n and subtract actual array sum.",
+      "optimized_code": "def missing_number(nums):\n    n = len(nums)\n    return n * (n + 1) // 2 - sum(nums)",
+      "optimized_explanation": "1. Expected sum is n(n+1)/2\n2. Subtract actual sum\n3. Result is missing number\n4. No sort needed\n5. One line answer",
+      "optimized_tc": "O(n)",
+      "optimized_sc": "O(1)",
+      "user_tc": "O(n)",
+      "user_sc": "O(1)",
+      "function_signature": "def missing_number(nums):"
+    }
+  ],
+  "Strings": [
+    {
+      "id": "str1",
+      "question": "Find the longest palindromic substring in a string.",
+      "difficulty": "Medium",
+      "sample_input": "\"babad\"",
+      "expected_output": "\"bab\"",
+      "hint": "Try expanding from each character center.",
+      "optimized_code": "def longest_palindrome(s):\n    res = \"\"\n    for i in range(len(s)):\n        for j in [0, 1]:\n            l, r = i, i + j\n            while l >= 0 and r < len(s) and s[l] == s[r]:\n                if r - l + 1 > len(res):\n                    res = s[l:r+1]\n                l -= 1\n                r += 1\n    return res",
+      "optimized_explanation": "1. Expand from each center\n2. Track longest match\n3. Check both even and odd\n4. Update max string\n5. Return result",
+      "optimized_tc": "O(n^2)",
+      "optimized_sc": "O(1)",
+      "user_tc": "O(n^2)",
+      "user_sc": "O(1)",
+      "function_signature": "def longest_palindrome(s):"
+    },
+    {
+      "id": "str2",
+      "question": "Check if two strings are anagrams.",
+      "difficulty": "Easy",
+      "sample_input": "\"anagram\", \"nagaram\"",
+      "expected_output": "True",
+      "hint": "Sort both strings and compare.",
+      "optimized_code": "def is_anagram(s, t):\n    return sorted(s) == sorted(t)",
+      "optimized_explanation": "1. Sort both strings\n2. Compare them\n3. Return True if equal\n4. Else False\n5. Easy way using sort",
+      "optimized_tc": "O(n log n)",
+      "optimized_sc": "O(1)",
+      "user_tc": "O(n log n)",
+      "user_sc": "O(1)",
+      "function_signature": "def is_anagram(s, t):"
+    }
+  ],
+  "Linked List": [
+    {
+      "id": "ll1",
+      "question": "Detect cycle in a linked list.",
+      "difficulty": "Medium",
+      "sample_input": "head = [3,2,0,-4], pos = 1",
+      "expected_output": "True",
+      "hint": "Use slow and fast pointer approach.",
+      "optimized_code": "def hasCycle(head):\n    slow = fast = head\n    while fast and fast.next:\n        slow = slow.next\n        fast = fast.next.next\n        if slow == fast:\n            return True\n    return False",
+      "optimized_explanation": "1. Use two pointers\n2. One moves fast\n3. Other moves slow\n4. If they meet, cycle exists\n5. Else return False",
+      "optimized_tc": "O(n)",
+      "optimized_sc": "O(1)",
+      "user_tc": "O(n)",
+      "user_sc": "O(1)",
+      "function_signature": "def hasCycle(head):"
+    },
+    {
+      "id": "ll2",
+      "question": "Reverse a singly linked list.",
+      "difficulty": "Easy",
+      "sample_input": "[1,2,3,4,5]",
+      "expected_output": "[5,4,3,2,1]",
+      "hint": "Iterate and reverse pointers.",
+      "optimized_code": "def reverseList(head):\n    prev = None\n    while head:\n        nxt = head.next\n        head.next = prev\n        prev = head\n        head = nxt\n    return prev",
+      "optimized_explanation": "1. Use prev and current\n2. Reverse pointer\n3. Move both\n4. At end, prev is new head\n5. Return it",
+      "optimized_tc": "O(n)",
+      "optimized_sc": "O(1)",
+      "user_tc": "O(n)",
+      "user_sc": "O(1)",
+      "function_signature": "def reverseList(head):"
+    }
+  ],
+  "HashMap": [
+    {
+      "id": "hash1",
+      "question": "Two sum problem.",
+      "difficulty": "Easy",
+      "sample_input": "nums = [2,7,11,15], target = 9",
+      "expected_output": "[0,1]",
+      "hint": "Use hashmap to track indices.",
+      "optimized_code": "def twoSum(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        diff = target - num\n        if diff in seen:\n            return [seen[diff], i]\n        seen[num] = i",
+      "optimized_explanation": "1. Store value:index in map\n2. Check if diff exists\n3. If found, return indices\n4. Else update map\n5. One pass",
+      "optimized_tc": "O(n)",
+      "optimized_sc": "O(n)",
+      "user_tc": "O(n)",
+      "user_sc": "O(n)",
+      "function_signature": "def twoSum(nums, target):"
+    },
+    {
+      "id": "hash2",
+      "question": "First unique character in a string.",
+      "difficulty": "Easy",
+      "sample_input": "\"leetcode\"",
+      "expected_output": "0",
+      "hint": "Count frequency using hashmap.",
+      "optimized_code": "def firstUniqChar(s):\n    count = {}\n    for c in s:\n        count[c] = count.get(c, 0) + 1\n    for i, c in enumerate(s):\n        if count[c] == 1:\n            return i\n    return -1",
+      "optimized_explanation": "1. Count chars\n2. Store in dict\n3. Loop again to check count\n4. Return index\n5. If none, return -1",
+      "optimized_tc": "O(n)",
+      "optimized_sc": "O(1)",
+      "user_tc": "O(n)",
+      "user_sc": "O(1)",
+      "function_signature": "def firstUniqChar(s):"
+    }
+  ],
+  "Graphs": [
+    {
+      "id": "graph1",
+      "question": "Detect cycle in an undirected graph.",
+      "difficulty": "Medium",
+      "sample_input": "n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]",
+      "expected_output": "True",
+      "hint": "Use DFS and track visited nodes and parent.",
+      "optimized_code": "def has_cycle(n, edges):\n    from collections import defaultdict\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    visited = set()\n    def dfs(node, parent):\n        visited.add(node)\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                if dfs(neighbor, node): return True\n            elif neighbor != parent:\n                return True\n        return False\n    for i in range(n):\n        if i not in visited:\n            if dfs(i, -1): return True\n    return False",
+      "optimized_explanation": "1. Build adjacency list\n2. Use DFS\n3. Track parent to avoid false cycle\n4. Visit all nodes\n5. Return based on cycle detection",
+      "optimized_tc": "O(V+E)",
+      "optimized_sc": "O(V)",
+      "user_tc": "O(V+E)",
+      "user_sc": "O(V)",
+      "function_signature": "def has_cycle(n, edges):"
+    },
+    {
+      "id": "graph2",
+      "question": "Count number of connected components in an undirected graph.",
+      "difficulty": "Medium",
+      "sample_input": "n = 5, edges = [[0,1],[1,2],[3,4]]",
+      "expected_output": "2",
+      "hint": "Use DFS or BFS to explore each component.",
+      "optimized_code": "def count_components(n, edges):\n    from collections import defaultdict\n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n        graph[v].append(u)\n    visited = set()\n    def dfs(node):\n        visited.add(node)\n        for nei in graph[node]:\n            if nei not in visited:\n                dfs(nei)\n    count = 0\n    for i in range(n):\n        if i not in visited:\n            dfs(i)\n            count += 1\n    return count",
+      "optimized_explanation": "1. Build graph\n2. DFS for each component\n3. Count new DFS calls\n4. Track visited\n5. Return count",
+      "optimized_tc": "O(V+E)",
+      "optimized_sc": "O(V)",
+      "user_tc": "O(V+E)",
+      "user_sc": "O(V)",
+      "function_signature": "def count_components(n, edges):"
+    }
+  ],
+  "Trees": [
+    {
+      "id": "tree1",
+      "question": "Check if a binary tree is symmetric.",
+      "difficulty": "Easy",
+      "sample_input": "root = [1,2,2,3,4,4,3]",
+      "expected_output": "True",
+      "hint": "Compare left and right subtree recursively.",
+      "optimized_code": "def is_symmetric(root):\n    def is_mirror(t1, t2):\n        if not t1 and not t2: return True\n        if not t1 or not t2: return False\n        return (t1.val == t2.val and \n                is_mirror(t1.left, t2.right) and \n                is_mirror(t1.right, t2.left))\n    return is_mirror(root, root)",
+      "optimized_explanation": "1. Use helper to compare left and right\n2. Base cases for nulls\n3. Compare values\n4. Recur left-right vs right-left\n5. Return result",
+      "optimized_tc": "O(n)",
+      "optimized_sc": "O(h)",
+      "user_tc": "O(n)",
+      "user_sc": "O(h)",
+      "function_signature": "def is_symmetric(root):"
+    },
+    {
+      "id": "tree2",
+      "question": "Perform inorder traversal of a binary tree.",
+      "difficulty": "Easy",
+      "sample_input": "root = [1,null,2,3]",
+      "expected_output": "[1,3,2]",
+      "hint": "Use recursion to visit left-root-right.",
+      "optimized_code": "def inorder_traversal(root):\n    res = []\n    def dfs(node):\n        if not node: return\n        dfs(node.left)\n        res.append(node.val)\n        dfs(node.right)\n    dfs(root)\n    return res",
+      "optimized_explanation": "1. Use DFS\n2. Visit left\n3. Append value\n4. Visit right\n5. Return list",
+      "optimized_tc": "O(n)",
+      "optimized_sc": "O(h)",
+      "user_tc": "O(n)",
+      "user_sc": "O(h)",
+      "function_signature": "def inorder_traversal(root):"
+    }
+  ],
+  "Heaps": [
+    {
+      "id": "heap1",
+      "question": "Find the k largest elements in an array.",
+      "difficulty": "Medium",
+      "sample_input": "nums = [3,2,1,5,6,4], k = 2",
+      "expected_output": "[5,6]",
+      "hint": "Use a min heap of size k.",
+      "optimized_code": "def k_largest_elements(nums, k):\n    import heapq\n    return heapq.nlargest(k, nums)",
+      "optimized_explanation": "1. Use heapq.nlargest\n2. Python uses min-heap\n3. Efficient for top-k\n4. One line solution\n5. Return result",
+      "optimized_tc": "O(n log k)",
+      "optimized_sc": "O(k)",
+      "user_tc": "O(n log k)",
+      "user_sc": "O(k)",
+      "function_signature": "def k_largest_elements(nums, k):"
+    },
+    {
+      "id": "heap2",
+      "question": "Implement a min heap and support insertion.",
+      "difficulty": "Medium",
+      "sample_input": "Insert 5, 3, 8, 1",
+      "expected_output": "[1, 3, 8, 5]",
+      "hint": "Use heapq.heappush()",
+      "optimized_code": "def build_min_heap(elements):\n    import heapq\n    heap = []\n    for el in elements:\n        heapq.heappush(heap, el)\n    return heap",
+      "optimized_explanation": "1. Initialize empty list\n2. Push using heappush\n3. Maintain heap order\n4. Built-in handles logic\n5. Return heap",
+      "optimized_tc": "O(n log n)",
+      "optimized_sc": "O(n)",
+      "user_tc": "O(n log n)",
+      "user_sc": "O(n)",
+      "function_signature": "def build_min_heap(elements):"
+    }
+  ]
+}
